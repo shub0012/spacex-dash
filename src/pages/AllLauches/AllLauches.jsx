@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { getAllLaunches } from '../../services/spaceXApi'
-import { ShowCard } from "../../components";
+import { ShowCard } from "../../components"
 import { Grid, Button } from '@material-ui/core'
-
+import Loader from "react-loader-spinner"
+import clsx from 'clsx'
 import useStyles from './styles'
+import './styles.css'
 
 const AllLauches = () => {
     const [lauchesData, setLaunchesData] = useState([])
@@ -21,6 +23,8 @@ const AllLauches = () => {
             setHasNextPage(data.hasNextPage)
             setHasPrevPage(data.hasPrevPage)
             console.log(lauchesData,data,totalPages)
+        } else {
+            return 'Loading.....'
         }
         
         
@@ -49,11 +53,10 @@ const AllLauches = () => {
     const classes = useStyles()
 
     return (
-        <main className={classes.content}>
-        <div className={classes.toolbar} />
+        <main className={clsx(classes.content)}>
             <h1 className={classes.title}> All Launches</h1>
             <Grid container justify="center" spacing={4}>
-                {lauchesData.map((launch) => (
+                {lauchesData.length > 0 ? lauchesData.map((launch) => (
                     <Grid item key={launch.id} xs={12} sm={6} md={4} lg={3}>
                         <ShowCard 
                             name={launch?.name}
@@ -69,12 +72,19 @@ const AllLauches = () => {
                             success={launch?.success}
                          />
                     </Grid>
-                ))}
+                )) : <Loader
+                        type="TailSpin"
+                        color="#000"
+                        height={400}
+                        width={300}
+                        
+                    /> 
+                }
                 
             </Grid>
-            <div style={{ display: 'flex', justifyContent: 'space-evenly', margin: '2.5rem', position: '-webkit-sticky'}}>
-                <Button variant="contained" color="secondary" onClick={() => handlePreviousPage()}>Previous Page</Button>
-                <Button variant="contained" color="primary" onClick={() => handleNextPage()}>Next Page</Button>
+            <div style={{ display: 'flex', justifyContent: 'space-evenly', margin: '2.5rem'}}>
+                <Button variant="contained" color="secondary" onClick={() => handlePreviousPage()} style={{padding:'0.7rem'}}>Previous Page</Button>
+                <Button variant="contained" color="primary" onClick={() => handleNextPage()} >Next Page</Button>
             </div>
         </main>
     )

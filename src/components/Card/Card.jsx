@@ -39,26 +39,26 @@ const ShowCard = ({name, images, launchDate, youtubeLink, wikiLink, articleLink,
             title={name}
         />
         <CardContent className={classes.cardContent}>
-            <Typography variant="subtitle1" color="primary" display="block">
+            <Typography variant="subtitle1" color="textPrimary" display="block">
                  <div>Rocket: {rokect}</div>
             </Typography>
-            <Typography variant="subtitle1" color="primary" display="block">
+            <Typography variant="subtitle1" color="textPrimary" display="block">
                 <div>Orbit: {checkOrbit}</div>
             </Typography>
-            <Typography variant="subtitle1" color="primary" display="block">
+            <Typography variant="subtitle1" color="textPrimary" display="block">
                 <div>launchpad: {launchpad}</div>
             </Typography>
             
         </CardContent>
         <CardActions disableSpacing>
             <IconButton  aria-label="watch youtube webcast" target="_blank" onClick={() => checkLink(youtubeLink)} href={youtubeLink} rel="noopener noreferrer">
-                <YouTubeIcon className={classes.avatar} />
+                <YouTubeIcon className={classes.avatarUtube} />
             </IconButton>
             <IconButton aria-label="wikipedia" target="_blank" onClick={() => checkLink(wikiLink)} href={wikiLink} rel="noopener noreferrer">
-                <LanguageIcon />
+                <LanguageIcon className={classes.avatarWiki} />
             </IconButton>
             <IconButton aria-label="article" target="_blank" onClick={() => checkLink(articleLink)} href={articleLink} rel="noopener noreferrer">
-                <LibraryBooksIcon />
+                <LibraryBooksIcon className={classes.avatarArticle}  />
             </IconButton>
             <IconButton
                 className={clsx(classes.expand, {

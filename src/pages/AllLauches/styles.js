@@ -1,18 +1,21 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { grey } from '@material-ui/core/colors'
+// import { grey } from '@material-ui/core/colors'
+// import { GradientTwoTone } from '@material-ui/icons'
+
 
 export default makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
     content: {
       flexGrow: 1,
-      backgroundColor: grey[100],
       padding: theme.spacing(3),
     },
+    
     root: {
       flexGrow: 1,
       '& > *': {
         margin: theme.spacing(1),
       },
+      
     },
     title: {
       display:'flex',
@@ -22,7 +25,8 @@ export default makeStyles((theme) => ({
       color: '#d54d7b',
       fontSize: '4rem',
       fontWeight: 'normal',
-      textShadow: '0 1px 1px #fff'
+      textShadow: '0 1px 1px #fff',
+      marginBottom:'1.5rem',
     },
     carousel : {
       width:'100%',
