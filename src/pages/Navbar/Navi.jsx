@@ -14,6 +14,7 @@ const Navi = () => {
                 <Navbar.Collapse id="responsive-navbar-nav" >
                 <Nav className="mr-auto">
                     <Nav.Link href="/all-launches" className="font-weight-bold text-dark" >All Launches</Nav.Link>
+                    <Nav.Link href="/ships" className="font-weight-bold text-dark" >Ships</Nav.Link>
                     <Nav.Link href="/rockets" className="font-weight-bold text-dark" >Rockets</Nav.Link>
                 </Nav>
                 </Navbar.Collapse>

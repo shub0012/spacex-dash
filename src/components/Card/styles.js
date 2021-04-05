@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
 import { red, grey, teal } from '@material-ui/core/colors';
-import Color from 'color';
 
 export default makeStyles((theme) => ({
     root: {

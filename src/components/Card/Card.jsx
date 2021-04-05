@@ -8,7 +8,23 @@ import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 
 import useStyles from './styles'
 
-const ShowCard = ({name, images, launchDate, youtubeLink, wikiLink, articleLink, rokect, orbit, launchpad, upcoming, success }) => {
+const ShowCard = ({name, 
+    images, 
+    launchDate, 
+    youtubeLink, 
+    wikiLink, 
+    articleLink, 
+    rokect, 
+    orbit, 
+    launchpad, 
+    upcoming, 
+    success,
+    launchDetails,
+    flightNumber,
+    manufacturer,
+    nationality,
+    payloadType,
+    numOfLaunches }) => {
     const classes = useStyles()
     const [expanded, setExpanded] = useState(false)
     const showImage =  images === null ? "https://www.spacex.com/static/images/share.jpg" : images
@@ -19,6 +35,7 @@ const ShowCard = ({name, images, launchDate, youtubeLink, wikiLink, articleLink,
     }
     const launchStatus = success && !upcoming ? 'Success' : !success && !upcoming ? 'Failure' : 'Upcoming'
     const checkOrbit = orbit === undefined ? 'NA' : orbit
+    const checkLaunchDetails = launchDetails === null ? 'Details not available for this Launch' : launchDetails
     const formattedDate = new Date(launchDate)
     const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -73,11 +90,15 @@ const ShowCard = ({name, images, launchDate, youtubeLink, wikiLink, articleLink,
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-                <Typography paragraph>Method:</Typography>
-                <Typography paragraph>
-                        Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                        minutes.
+                <Typography>Launch Details:</Typography>
+                <Typography paragraph title={launchDetails}>
+                        {checkLaunchDetails.slice(0,250)}
                 </Typography>
+                <Typography paragraph>Flight Number: {flightNumber}</Typography>
+                <Typography paragraph>Manufacturer: {manufacturer}</Typography>
+                <Typography paragraph>Nationality: {nationality}</Typography>
+                <Typography paragraph>Payload Type: {payloadType}</Typography>
+                <Typography paragraph>Number of Launches: {numOfLaunches}</Typography>
             </CardContent>
         </Collapse>
     </Card>

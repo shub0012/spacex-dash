@@ -1,40 +1,41 @@
 import React, { useEffect, useState } from 'react'
-import { getAllLaunches } from '../../services/spaceXApi'
-import { ShowCard } from "../../components"
+import { getAllShips } from '../../services/spaceXApi'
+import { SmallCard } from "../../components"
 import { Grid, Button } from '@material-ui/core'
 import Loader from "react-loader-spinner"
 import clsx from 'clsx'
-import useStyles from './styles'
+import useStyles from '../AllLauches/styles'
 
-const AllLauches = () => {
-    const [lauchesData, setLaunchesData] = useState([])
+
+const AllShips = () => {
+    const [shipData, setShipData] = useState([])
     const [totalPages, setTotalPages] = useState(0)
     const [pageNum, setPageNum] = useState(1)
     const [hasNextPage, setHasNextPage] = useState(true)
     const [hasPrevPage, setHasPrevPage] = useState(false)
     const [alertMessage, setAlertMessage] = useState('')
 
-    const fetchAllLaunches = async (pageNum) => {
-        const data =  await getAllLaunches(pageNum)
+    const fetchAllShips = async (pageNum) => {
+        const data =  await getAllShips(pageNum)
         if(data) {
-            setLaunchesData(data.docs)
+            setShipData(data.docs)
             setTotalPages(data.totalPages)
             setPageNum(data.page)
             setHasNextPage(data.hasNextPage)
             setHasPrevPage(data.hasPrevPage)
-            console.log(lauchesData,data,totalPages)
-        }
+            console.log(shipData,data,totalPages)
+        } 
       }
-
+    
     useEffect(() => {
-        fetchAllLaunches()
+        fetchAllShips()
         //eslint-disable-next-line
     },[])
 
     const handleNextPage = () => {
         if(hasNextPage === true && pageNum < totalPages){
             setAlertMessage('')
-            fetchAllLaunches(pageNum+1)
+            fetchAllShips(pageNum+1)
         }else {
             setAlertMessage('This is the Last Page')
         }
@@ -42,39 +43,24 @@ const AllLauches = () => {
     const handlePreviousPage = () => {
         if(hasPrevPage === true){
             setAlertMessage('')
-            fetchAllLaunches(pageNum-1)
+            fetchAllShips(pageNum-1)
         }else{
             setAlertMessage('This is the first Page')
         }
     }
-
     const classes = useStyles()
-
     return (
         <main className={clsx(classes.content)}>
-            <h1 className={classes.title}> All Launches</h1>
+            <h1 className={classes.title}>All Ships</h1>
             <Grid container justify="center" spacing={4}>
-                {lauchesData.length > 0 ? lauchesData.map((launch) => (
-                    <Grid item key={launch.id} xs={12} sm={6} md={4} lg={3}>
-                        <ShowCard 
-                            name={launch?.name}
-                            images={launch?.links?.patch.small}
-                            launchDate={launch?.date_utc}
-                            youtubeLink={launch?.links?.webcast}
-                            wikiLink={launch?.links?.wikipedia}
-                            articleLink={launch?.links?.article}
-                            rokect={launch?.rocket?.name}
-                            orbit={launch?.payloads[0]?.orbit}
-                            launchpad={launch?.launchpad?.name}
-                            upcoming={launch?.upcoming}
-                            success={launch?.success}
-                            launchDetails={launch?.details}
-                            flightNumber={launch?.flight_number}
-                            manufacturer={launch?.payloads[0]?.manufacturers[0]}
-                            nationality={launch?.payloads[0]?.nationalities[0]}
-                            payloadType={launch?.payloads[0]?.type}
-                            numOfLaunches={launch?.launchpad?.launches.length}
-                         />
+                {shipData.length > 0 ? shipData.map((ship) => (
+                    <Grid item key={ship.id} xs={12} sm={6} md={4} lg={3}>
+                        <SmallCard 
+                            images = {ship?.image}
+                            name = {ship?.name}
+                            description = {`${ship?.name} has a mass of ${ship?.mass_lbs} kg and was built on ${ship?.year_built}. The home port for ${ship?.name} is ${ship?.home_port}. The type of the ship is ${ship?.type} and Active Status is ${ship?.active.toString().toUpperCase()}.`}
+                            articleLink ={ship?.link}
+                        />
                     </Grid>
                 )) : <Loader
                         type="TailSpin"
@@ -97,4 +83,4 @@ const AllLauches = () => {
     )
 }
 
-export default AllLauches
+export default AllShips

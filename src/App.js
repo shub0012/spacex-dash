@@ -1,5 +1,5 @@
 import React from 'react'
-import { AllLauches, Navi } from './pages'
+import { AllLauches, Navi, AllShips } from './pages'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import './styles.css'
@@ -13,6 +13,9 @@ const App = () => {
       <Switch>
         <Route exact path="/all-launches">
           <AllLauches />
+        </Route>
+        <Route exact path="/ships">
+          <AllShips />
         </Route>
         <Route exact path="/rockets">
           <h2>All Rockets</h2>
