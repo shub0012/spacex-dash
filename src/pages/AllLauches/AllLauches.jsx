@@ -22,7 +22,7 @@ const AllLauches = () => {
             setPageNum(data.page)
             setHasNextPage(data.hasNextPage)
             setHasPrevPage(data.hasPrevPage)
-            console.log(lauchesData,data,totalPages)
+            // console.log(lauchesData,data,totalPages)
         }
       }
 
@@ -30,7 +30,6 @@ const AllLauches = () => {
         fetchAllLaunches()
         //eslint-disable-next-line
     },[])
-
     const handleNextPage = () => {
         if(hasNextPage === true && pageNum < totalPages){
             setAlertMessage('')

@@ -1,41 +1,45 @@
 import React, { useEffect, useState } from 'react'
-import { getAllShips } from '../../services/spaceXApi'
+import { getAllLandpads } from '../../services/spaceXApi'
 import { SmallCard } from "../../components"
 import { Grid, Button } from '@material-ui/core'
 import Loader from "react-loader-spinner"
 import clsx from 'clsx'
 import useStyles from '../AllLauches/styles'
 
-
-const AllShips = () => {
-    const [shipData, setShipData] = useState([])
+const Landpads = () => {
+    const [landpadData, setLandpadData] = useState([])
     const [totalPages, setTotalPages] = useState(0)
     const [pageNum, setPageNum] = useState(1)
     const [hasNextPage, setHasNextPage] = useState(true)
     const [hasPrevPage, setHasPrevPage] = useState(false)
     const [alertMessage, setAlertMessage] = useState('')
 
-    const fetchAllShips = async (pageNum) => {
-        const data =  await getAllShips(pageNum)
+    const landpadImgArray = [
+        'https://s.w-x.co/util/image/w/411spacex.jpg?v=at&w=815&h=458',
+        'https://upload.wikimedia.org/wikipedia/commons/5/54/CRS-8_%2826239020092%29.jpg',
+        'https://cdn.arstechnica.net/wp-content/uploads/2017/01/SpaceXmap-800x460.jpg',
+        'https://mk0spaceflightnoa02a.kinstacdn.com/wp-content/uploads/2014/12/asds_exposure_correction_no_water_smooth.jpg'
+    ]
+    const fetchAllLandpads = async (pageNum) => {
+        const data =  await getAllLandpads(pageNum)
         if(data) {
-            setShipData(data.docs)
+            setLandpadData(data.docs)
             setTotalPages(data.totalPages)
             setPageNum(data.page)
             setHasNextPage(data.hasNextPage)
             setHasPrevPage(data.hasPrevPage)
-            // console.log(shipData,data,totalPages)
+            // console.log(landpadData,data,totalPages)
         } 
-      }
-    
+    }
     useEffect(() => {
-        fetchAllShips()
+        fetchAllLandpads()
         //eslint-disable-next-line
     },[])
 
     const handleNextPage = () => {
         if(hasNextPage === true && pageNum < totalPages){
             setAlertMessage('')
-            fetchAllShips(pageNum+1)
+            fetchAllLandpads(pageNum+1)
         }else {
             setAlertMessage('This is the Last Page')
         }
@@ -43,7 +47,7 @@ const AllShips = () => {
     const handlePreviousPage = () => {
         if(hasPrevPage === true){
             setAlertMessage('')
-            fetchAllShips(pageNum-1)
+            fetchAllLandpads(pageNum-1)
         }else{
             setAlertMessage('This is the first Page')
         }
@@ -51,15 +55,15 @@ const AllShips = () => {
     const classes = useStyles()
     return (
         <main className={clsx(classes.content)}>
-            <h1 className={classes.title}>All Ships</h1>
+            <h1 className={classes.title}>All LandPads</h1>
             <Grid container justify="center" spacing={4}>
-                {shipData.length > 0 ? shipData.map((ship) => (
-                    <Grid item key={ship.id} xs={12} sm={6} md={4} lg={3}>
+                {landpadData.length > 0 ? landpadData.map((landpad) => (
+                    <Grid item key={landpad.id} xs={12} sm={6} md={4} lg={3}>
                         <SmallCard 
-                            images = {ship?.image}
-                            name = {ship?.name}
-                            description = {`${ship?.name} has a mass of ${ship?.mass_lbs} kg and was built on ${ship?.year_built}. The home port for ${ship?.name} is ${ship?.home_port}. The type of the ship is ${ship?.type} and Active Status is ${ship?.active.toString().toUpperCase()}.`}
-                            articleLink ={ship?.link}
+                            images = {landpadImgArray[Math.floor(Math.random() * landpadImgArray.length)]}
+                            name = {`${landpad?.full_name} - ${landpad?.region}`}
+                            description = {`Status : ${landpad?.status.toUpperCase()} & ${landpad?.details}`}
+                            articleLink ={landpad?.wikipedia}
                         />
                     </Grid>
                 )) : <Loader
@@ -83,4 +87,4 @@ const AllShips = () => {
     )
 }
 
-export default AllShips
+export default Landpads

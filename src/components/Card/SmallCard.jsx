@@ -18,16 +18,17 @@ const SmallCard = ({images, name, description, articleLink}) => {
         <CardMedia
           component="img"
           alt={name}
-          height="200"
+          height="350"
           image={checkImg}
           title={name}
+          className={classes.cardImg}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {name}
+          <Typography gutterBottom variant="h5" component="h2" title={name}>
+            {name.slice(0,48)}
           </Typography>
-          <Typography variant="body2" color="textPrimary" component="p">
-            {description}
+          <Typography variant="body2" color="textPrimary" component="p" title={description}>
+            {description.slice(0,170)}
           </Typography>
         </CardContent>
       </CardActionArea>
