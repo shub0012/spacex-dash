@@ -1,7 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { red, grey, teal } from '@material-ui/core/colors';
+import { blue, grey, teal } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
+    toolbar: theme.mixins.toolbar,
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(3),
+    },
     root: {
         maxWidth: '100%',
         borderRadius: 16,
@@ -11,24 +16,17 @@ export default makeStyles((theme) => ({
         },
         
     },
-    Success: {
-        color: '#03543F',
-        border: '1px solid #DEF7EC',
-        borderRadius: '15px',
-        backgroundColor: '#DEF7EC'
-    },
-    Upcoming: {
-        color: '#92400F',
-        border: '1px solid #FEF3C7',
-        borderRadius: '15px',
-        backgroundColor: '#FEF3C7'
-    },
-    Failure: {
-        color: '#981B1C',
-        border: '1px solid #FDE2E1',
-        borderRadius: '15px',
-        backgroundColor: '#FDE2E1' 
-    },
+    title: {
+        display:'flex',
+        justifyContent: 'center',
+        width: '100%',
+        fontFamily: 'Helvetica,Great Vibes',
+        color: '#000',
+        fontSize: '4rem',
+        fontWeight: 'bold',
+        textShadow: '0.5px 2px 0.5px #fff',
+        marginBottom:'1.5rem',
+      },
     cardHover: {
         backgroundColor: 'rgba( 255, 255, 255, 0.25 )',
         boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
@@ -60,7 +58,7 @@ export default makeStyles((theme) => ({
         transform: 'rotate(180deg)',
       },
     avatarUtube: {
-        color: red[800],
+        color: blue[600],
     },
     avatarWiki: {
         color: grey[600],
@@ -74,5 +72,9 @@ export default makeStyles((theme) => ({
         backgroundSize: 'contain',
         backgroundClip: 'border-box',
         backgroundOrigin: 'border-box',
+    },
+    avatar : {
+        backgroundColor: '#000000',
+        fontSize: '2rem'
     }
 }))
