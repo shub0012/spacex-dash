@@ -30,5 +30,16 @@ export default makeStyles((theme) => ({
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
-    }
+    },
+    title: {
+      display:'flex',
+      justifyContent: 'center',
+      width: '100%',
+      fontFamily: 'Helvetica,Great Vibes',
+      color: '#000',
+      fontSize: '4rem',
+      fontWeight: 'bold',
+      textShadow: '0.5px 2px 0.5px #fff',
+      marginBottom:'1.5rem',
+    },
   }))

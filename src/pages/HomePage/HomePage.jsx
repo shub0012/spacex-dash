@@ -14,7 +14,7 @@ const HomePage = () => {
     const classes = useStyles();
     return (
         <main className={classes.content}>
-        <div className={classes.toolbar} />
+        <h1 className={classes.title}>Dashboard</h1>
         <Grid container justify="space-evenly" spacing={4} >
             <Card className={clsx(classes.root, classes.cardHover)}>
                 <CardActionArea>
@@ -135,7 +135,7 @@ const HomePage = () => {
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                            Ships
+                            Crew
                         </Typography>
                         <Typography variant="body2" color="textPrimary" component="h4">
                             Click Below to know more about crew in SpaceX Team
@@ -160,7 +160,7 @@ const HomePage = () => {
                         About SpaceX
                         </Typography>
                         <Typography variant="body2" color="textPrimary" component="h4">
-                            Click Below to know more about SpaceX
+                            Click Below to know more about SpaceX and its Leadership
                         </Typography>
                     </CardContent>
                 </CardActionArea>

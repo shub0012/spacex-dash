@@ -43,10 +43,10 @@ export default makeStyles((theme) => ({
     alertMessage: {
       backgroundColor: 'rgba( 255, 255, 255, 0.25 )',
       boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-      backdropFilter: 'blur( 7.0px )',
+      backdropFilter: 'blur( 5.0px )',
       borderRadius: '10px',
       border: '1px solid rgba( 255, 255, 255, 0.18 )',
-      WebkitBackdropFilter: 'blur(7.0px)',
+      WebkitBackdropFilter: 'blur(5.0px)',
       display: 'flex', 
       justifyContent: 'space-evenly', 
       margin: '2.5rem', 
